@@ -28,3 +28,6 @@
 1. Start the VM
 2. Let it bootup, if you see black screen shutdown the VM and start again.
 3. Follow the OS installation steps.
+
+## Install VirtualBox Extension Pack
+[VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads).
