@@ -23,15 +23,18 @@ For copy-paste to work, **Guest Additions** must be installed inside the VM.
    ```bash
    sudo apt update
    sudo apt install virtualbox-guest-utils virtualbox-guest-x11
+   ```
 ### Reboot 
 - reboot the ubuntu
   ```bash
    sudo reboot
+  ```
 ---
 ### ✅ You may also do the following steps if nothing works
 1. Required before installing Guest Additions software.   
    ```bash
    sudo apt install gcc make perl bzip2
+   ```
 2. In VirtualBox, go to Devices → Insert Guest Additions CD.
 3. Click on the CD icon on the Ubuntu sidebar.
 4. Click on Run Software to start the installation.
