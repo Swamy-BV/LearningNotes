@@ -17,7 +17,7 @@
 
 ## PX4 Drone APIs
 - The Drone API enables control of a PX4-powered drone without requiring an understanding of its internal flight stack.  
-- These APIs can run on a companion computer, allowing for advanced control, high-level automation, and integration with external systems such as AI-based navigation, real-time data processing, and mission planning.
+- These APIs can run on a companion computer, allowing for advanced control, high-level automation, and integration with external systems such as computer vision, real-time data processing, and mission planning.
 
 - PX4 mainly supports **MAVSDK** and **ROS2**. 
 
