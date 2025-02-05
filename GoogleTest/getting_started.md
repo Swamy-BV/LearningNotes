@@ -1,6 +1,6 @@
-# Cmake & Google Test
+# Google Test getting started
 
-Here is an example of how to integrate Google Test with CMake
+## Integrate Google Test with CMake
 
 ```cmake
 cmake_minimum_required(VERSION 3.21)
@@ -89,3 +89,46 @@ int main(int argc, char **argv) {
     return RUN_ALL_TESTS();
 }
 ```
+
+---
+# AAA (Arrange, Act, Assert)
+
+AAA is a common pattern used in unit testing to structure test cases. It stands for Arrange, Act, and Assert, and it helps to make tests clear and maintainable.
+
+1. **Arrange**: Set up the initial conditions and inputs for the test.
+2. **Act**: Execute the code being tested.
+3. **Assert**: Verify that the outcome is as expected.
+
+Here is an example of how to use the AAA pattern in a Google Test case:
+
+```cpp
+#include <gtest/gtest.h>
+
+// Function to be tested
+int multiply(int a, int b) {
+    return a * b;
+}
+
+// Test case using AAA pattern
+TEST(MultiplyTest, HandlesPositiveInput) {
+    // Arrange
+    int a = 3;
+    int b = 4;
+
+    // Act
+    int result = multiply(a, b);
+
+    // Assert
+    EXPECT_EQ(result, 12);
+}
+```
+
+In this example:
+- **Arrange**: The variables `a` and `b` are initialized with values 3 and 4.
+- **Act**: The `multiply` function is called with `a` and `b`.
+- **Assert**: The result is checked to ensure it equals 12.
+
+Using the AAA pattern helps to keep test cases organized and easy to understand.
+
+
+---
