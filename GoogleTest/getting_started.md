@@ -175,3 +175,55 @@ In this example:
 Each `TEST` macro defines a separate test case that will be run independently by the Google Test framework.
 
 ---
+## Types of Assertions in Google Test
+
+Google Test provides two types of assertions: fatal and non-fatal.
+
+### Fatal Assertions
+
+Fatal assertions cause the current function to return immediately. They are prefixed with `ASSERT_`. If a fatal assertion fails, the subsequent code in the same function will not be executed.
+
+Example:
+```cpp
+ASSERT_EQ(1, 1);  // This will pass
+ASSERT_EQ(1, 2);  // This will fail and abort the current function
+```
+
+### Non-Fatal Assertions
+
+Non-fatal assertions allow the current function to continue running even if the assertion fails. They are prefixed with `EXPECT_`. This is useful when you want to check multiple conditions in a single test.
+
+Example:
+```cpp
+EXPECT_EQ(1, 1);  // This will pass
+EXPECT_EQ(1, 2);  // This will fail but the function will continue
+```
+
+### List of Assertions
+
+#### Equality Assertions
+- `ASSERT_EQ(val1, val2)` / `EXPECT_EQ(val1, val2)`
+- `ASSERT_NE(val1, val2)` / `EXPECT_NE(val1, val2)`
+
+#### Relational Assertions
+- `ASSERT_LT(val1, val2)` / `EXPECT_LT(val1, val2)`
+- `ASSERT_LE(val1, val2)` / `EXPECT_LE(val1, val2)`
+- `ASSERT_GT(val1, val2)` / `EXPECT_GT(val1, val2)`
+- `ASSERT_GE(val1, val2)` / `EXPECT_GE(val1, val2)`
+
+#### Boolean Assertions
+- `ASSERT_TRUE(condition)` / `EXPECT_TRUE(condition)`
+- `ASSERT_FALSE(condition)` / `EXPECT_FALSE(condition)`
+
+#### String Assertions
+- `ASSERT_STREQ(str1, str2)` / `EXPECT_STREQ(str1, str2)`
+- `ASSERT_STRNE(str1, str2)` / `EXPECT_STRNE(str1, str2)`
+- `ASSERT_STRCASEEQ(str1, str2)` / `EXPECT_STRCASEEQ(str1, str2)`
+- `ASSERT_STRCASENE(str1, str2)` / `EXPECT_STRCASENE(str1, str2)`
+
+#### Floating-Point Assertions
+- `ASSERT_FLOAT_EQ(val1, val2)` / `EXPECT_FLOAT_EQ(val1, val2)`
+- `ASSERT_DOUBLE_EQ(val1, val2)` / `EXPECT_DOUBLE_EQ(val1, val2)`
+- `ASSERT_NEAR(val1, val2, abs_error)` / `EXPECT_NEAR(val1, val2, abs_error)`
+
+Using the appropriate type of assertion helps to control the flow of your tests and ensures that you get meaningful feedback from your test cases.
