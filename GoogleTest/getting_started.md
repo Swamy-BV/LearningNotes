@@ -203,27 +203,97 @@ EXPECT_EQ(1, 2);  // This will fail but the function will continue
 
 #### Equality Assertions
 - `ASSERT_EQ(val1, val2)` / `EXPECT_EQ(val1, val2)`
+    ```cpp
+    ASSERT_EQ(1, 1);  // Pass
+    EXPECT_EQ(1, 2);  // Fail
+    ```
+
 - `ASSERT_NE(val1, val2)` / `EXPECT_NE(val1, val2)`
+    ```cpp
+    ASSERT_NE(1, 2);  // Pass
+    EXPECT_NE(1, 1);  // Fail
+    ```
 
 #### Relational Assertions
 - `ASSERT_LT(val1, val2)` / `EXPECT_LT(val1, val2)`
+    ```cpp
+    ASSERT_LT(1, 2);  // Pass
+    EXPECT_LT(2, 1);  // Fail
+    ```
+
 - `ASSERT_LE(val1, val2)` / `EXPECT_LE(val1, val2)`
+    ```cpp
+    ASSERT_LE(1, 1);  // Pass
+    EXPECT_LE(2, 1);  // Fail
+    ```
+
 - `ASSERT_GT(val1, val2)` / `EXPECT_GT(val1, val2)`
+    ```cpp
+    ASSERT_GT(2, 1);  // Pass
+    EXPECT_GT(1, 2);  // Fail
+    ```
+
 - `ASSERT_GE(val1, val2)` / `EXPECT_GE(val1, val2)`
+    ```cpp
+    ASSERT_GE(2, 2);  // Pass
+    EXPECT_GE(1, 2);  // Fail
+    ```
 
 #### Boolean Assertions
 - `ASSERT_TRUE(condition)` / `EXPECT_TRUE(condition)`
+    ```cpp
+    ASSERT_TRUE(true);  // Pass
+    EXPECT_TRUE(false);  // Fail
+    ```
+
 - `ASSERT_FALSE(condition)` / `EXPECT_FALSE(condition)`
+    ```cpp
+    ASSERT_FALSE(false);  // Pass
+    EXPECT_FALSE(true);  // Fail
+    ```
 
 #### String Assertions
 - `ASSERT_STREQ(str1, str2)` / `EXPECT_STREQ(str1, str2)`
+    ```cpp
+    ASSERT_STREQ("hello", "hello");  // Pass
+    EXPECT_STREQ("hello", "world");  // Fail
+    ```
+
 - `ASSERT_STRNE(str1, str2)` / `EXPECT_STRNE(str1, str2)`
+    ```cpp
+    ASSERT_STRNE("hello", "world");  // Pass
+    EXPECT_STRNE("hello", "hello");  // Fail
+    ```
+
 - `ASSERT_STRCASEEQ(str1, str2)` / `EXPECT_STRCASEEQ(str1, str2)`
+    ```cpp
+    ASSERT_STRCASEEQ("Hello", "hello");  // Pass
+    EXPECT_STRCASEEQ("Hello", "world");  // Fail
+    ```
+
 - `ASSERT_STRCASENE(str1, str2)` / `EXPECT_STRCASENE(str1, str2)`
+    ```cpp
+    ASSERT_STRCASENE("Hello", "world");  // Pass
+    EXPECT_STRCASENE("Hello", "hello");  // Fail
+    ```
 
 #### Floating-Point Assertions
 - `ASSERT_FLOAT_EQ(val1, val2)` / `EXPECT_FLOAT_EQ(val1, val2)`
+    ```cpp
+    ASSERT_FLOAT_EQ(1.0f, 1.0f);  // Pass
+    EXPECT_FLOAT_EQ(1.0f, 2.0f);  // Fail
+    ```
+
 - `ASSERT_DOUBLE_EQ(val1, val2)` / `EXPECT_DOUBLE_EQ(val1, val2)`
+    ```cpp
+    ASSERT_DOUBLE_EQ(1.0, 1.0);  // Pass
+    EXPECT_DOUBLE_EQ(1.0, 2.0);  // Fail
+    ```
+
 - `ASSERT_NEAR(val1, val2, abs_error)` / `EXPECT_NEAR(val1, val2, abs_error)`
+    ```cpp
+    ASSERT_NEAR(1.0, 1.1, 0.2);  // Pass
+    EXPECT_NEAR(1.0, 1.3, 0.2);  // Fail
+    ```
 
 Using the appropriate type of assertion helps to control the flow of your tests and ensures that you get meaningful feedback from your test cases.
