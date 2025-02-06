@@ -132,3 +132,46 @@ Using the AAA pattern helps to keep test cases organized and easy to understand.
 
 
 ---
+
+# TEST Macro
+
+Google Test provides a macro `TEST` to define and register a test. The syntax for the `TEST` macro is as follows:
+
+```cpp
+TEST(TestSuiteName, TestName) {
+    // Test code here
+}
+```
+
+- `TestSuiteName`: The name of the test suite. This groups related tests together.
+- `TestName`: The name of the specific test within the test suite.
+
+Here is an example:
+
+```cpp
+#include <gtest/gtest.h>
+
+// Function to be tested
+int divide(int a, int b) {
+    if (b == 0) throw std::invalid_argument("Division by zero");
+    return a / b;
+}
+
+// Test case for divide function
+TEST(DivideTest, HandlesPositiveInput) {
+    EXPECT_EQ(divide(10, 2), 5);
+    EXPECT_EQ(divide(9, 3), 3);
+}
+
+TEST(DivideTest, HandlesDivisionByZero) {
+    EXPECT_THROW(divide(10, 0), std::invalid_argument);
+}
+```
+
+In this example:
+- `DivideTest` is the test suite name.
+- `HandlesPositiveInput` and `HandlesDivisionByZero` are the test names.
+
+Each `TEST` macro defines a separate test case that will be run independently by the Google Test framework.
+
+---
