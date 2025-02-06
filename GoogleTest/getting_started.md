@@ -297,3 +297,100 @@ EXPECT_EQ(1, 2);  // This will fail but the function will continue
     ```
 
 Using the appropriate type of assertion helps to control the flow of your tests and ensures that you get meaningful feedback from your test cases.
+
+---
+## C Strings and C++ Strings in Google Test
+
+Google Test provides specific assertions to compare C strings and C++ strings. These assertions help to handle string comparisons correctly, considering the differences between C strings (null-terminated character arrays) and C++ strings (`std::string`).
+
+### C String Assertions
+
+For C strings, Google Test provides the following assertions:
+
+- `ASSERT_STREQ(str1, str2)` / `EXPECT_STREQ(str1, str2)`
+    ```cpp
+    ASSERT_STREQ("hello", "hello");  // Pass
+    EXPECT_STREQ("hello", "world");  // Fail
+    ```
+
+- `ASSERT_STRNE(str1, str2)` / `EXPECT_STRNE(str1, str2)`
+    ```cpp
+    ASSERT_STRNE("hello", "world");  // Pass
+    EXPECT_STRNE("hello", "hello");  // Fail
+    ```
+
+- `ASSERT_STRCASEEQ(str1, str2)` / `EXPECT_STRCASEEQ(str1, str2)`
+    ```cpp
+    ASSERT_STRCASEEQ("Hello", "hello");  // Pass
+    EXPECT_STRCASEEQ("Hello", "world");  // Fail
+    ```
+
+- `ASSERT_STRCASENE(str1, str2)` / `EXPECT_STRCASENE(str1, str2)`
+    ```cpp
+    ASSERT_STRCASENE("Hello", "world");  // Pass
+    EXPECT_STRCASENE("Hello", "hello");  // Fail
+    ```
+
+### C++ String Assertions
+
+For C++ strings, you can use the standard equality and inequality assertions:
+
+- `ASSERT_EQ(val1, val2)` / `EXPECT_EQ(val1, val2)`
+    ```cpp
+    std::string str1 = "hello";
+    std::string str2 = "hello";
+    ASSERT_EQ(str1, str2);  // Pass
+    EXPECT_EQ(str1, "world");  // Fail
+    ```
+
+- `ASSERT_NE(val1, val2)` / `EXPECT_NE(val1, val2)`
+    ```cpp
+    std::string str1 = "hello";
+    std::string str2 = "world";
+    ASSERT_NE(str1, str2);  // Pass
+    EXPECT_NE(str1, "hello");  // Fail
+    ```
+
+### Example
+
+Here is an example that demonstrates the use of both C string and C++ string assertions in Google Test:
+
+```cpp
+#include <gtest/gtest.h>
+#include <string>
+
+// Function to be tested
+const char* getCString() {
+    return "hello";
+}
+
+std::string getCppString() {
+    return "hello";
+}
+
+// Test case for C strings
+TEST(StringTest, HandlesCString) {
+    // C string assertions
+    ASSERT_STREQ(getCString(), "hello");
+    EXPECT_STRNE(getCString(), "world");
+}
+
+// Test case for C++ strings
+TEST(StringTest, HandlesCppString) {
+    // C++ string assertions
+    ASSERT_EQ(getCppString(), std::string("hello"));
+    EXPECT_NE(getCppString(), std::string("world"));
+}
+
+// Main function to run all the tests
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+```
+
+In this example:
+- `HandlesCString` uses C string assertions to compare the result of `getCString` with expected values.
+- `HandlesCppString` uses C++ string assertions to compare the result of `getCppString` with expected values.
+
+Using the appropriate assertions for C strings and C++ strings ensures that your tests are accurate and meaningful.
