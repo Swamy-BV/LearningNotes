@@ -394,3 +394,80 @@ In this example:
 - `HandlesCppString` uses C++ string assertions to compare the result of `getCppString` with expected values.
 
 Using the appropriate assertions for C strings and C++ strings ensures that your tests are accurate and meaningful.
+
+---
+## Assertions on Exceptions
+
+Google Test provides assertions to verify that code throws or does not throw exceptions. These assertions help ensure that your code handles exceptional conditions correctly.
+
+### `ASSERT_THROW` and `EXPECT_THROW`
+
+These assertions verify that a specific exception is thrown.
+
+- `ASSERT_THROW(statement, exception_type)` / `EXPECT_THROW(statement, exception_type)`
+    ```cpp
+    ASSERT_THROW(throw std::runtime_error("error"), std::runtime_error);  // Pass
+    EXPECT_THROW(throw std::runtime_error("error"), std::logic_error);    // Fail
+    ```
+
+### `ASSERT_ANY_THROW` and `EXPECT_ANY_THROW`
+
+These assertions verify that any exception is thrown.
+
+- `ASSERT_ANY_THROW(statement)` / `EXPECT_ANY_THROW(statement)`
+    ```cpp
+    ASSERT_ANY_THROW(throw std::runtime_error("error"));  // Pass
+    EXPECT_ANY_THROW(int x = 0);                          // Fail
+    ```
+
+### `ASSERT_NO_THROW` and `EXPECT_NO_THROW`
+
+These assertions verify that no exception is thrown.
+
+- `ASSERT_NO_THROW(statement)` / `EXPECT_NO_THROW(statement)`
+    ```cpp
+    ASSERT_NO_THROW(int x = 0);                           // Pass
+    EXPECT_NO_THROW(throw std::runtime_error("error"));   // Fail
+    ```
+
+### Example
+
+Here is an example that demonstrates the use of exception assertions in Google Test:
+
+```cpp
+#include <gtest/gtest.h>
+#include <stdexcept>
+
+// Function to be tested
+void mayThrow(bool shouldThrow) {
+    if (shouldThrow) {
+        throw std::runtime_error("error");
+    }
+}
+
+// Test case for exception assertions
+TEST(ExceptionTest, HandlesThrow) {
+    // Verify that an exception is thrown
+    ASSERT_THROW(mayThrow(true), std::runtime_error);
+    EXPECT_THROW(mayThrow(true), std::runtime_error);
+
+    // Verify that any exception is thrown
+    ASSERT_ANY_THROW(mayThrow(true));
+    EXPECT_ANY_THROW(mayThrow(true));
+
+    // Verify that no exception is thrown
+    ASSERT_NO_THROW(mayThrow(false));
+    EXPECT_NO_THROW(mayThrow(false));
+}
+
+// Main function to run all the tests
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+```
+
+In this example:
+- `HandlesThrow` uses different exception assertions to verify the behavior of the `mayThrow` function under various conditions.
+
+Using exception assertions helps to ensure that your code correctly handles exceptional conditions and provides meaningful feedback when exceptions are thrown or not thrown as expected.
