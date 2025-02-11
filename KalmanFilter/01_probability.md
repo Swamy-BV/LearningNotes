@@ -96,3 +96,41 @@ P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)
 | **Mutually Exclusive** | ❌ No | P(A or B) = P(A) + P(B) |
 | **Non-Mutually Exclusive** | ✅ Yes | P(A or B) = P(A) + P(B) - P(A and B) |
 
+---
+### Conditional Probability
+
+Conditional probability measures the likelihood of an event happening given that another event has already occurred.
+
+#### Basic Formula
+```math
+P(A|B) = \frac{P(A \text{ and } B)}{P(B)}
+```
+Where P(A|B) reads as "probability of A given B"
+
+#### Real-World Examples
+
+##### 1. Weather Example
+- Suppose you want to know the probability of it being cold (A) given that it's raining (B)
+- If:
+    - P(cold and rain) = 0.15
+    - P(rain) = 0.3
+```math
+P(\text{cold}|\text{rain}) = \frac{0.15}{0.3} = 0.5
+```
+This means there's a 50% chance it's cold when it's raining.
+
+##### 2. Card Drawing Example
+Consider drawing two cards in sequence:
+- Probability of drawing second ace given first card was ace:
+```math
+P(\text{ace}_2|\text{ace}_1) = \frac{3}{51}
+```
+Because:
+- Only 3 aces remain
+- Only 51 cards left in deck
+
+#### Key Points
+- Conditional probability always depends on the occurrence of the first event
+- The vertical bar | means "given that"
+- The probability must be recalculated based on the new information
+---
