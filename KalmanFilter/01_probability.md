@@ -134,3 +134,133 @@ Because:
 - The vertical bar | means "given that"
 - The probability must be recalculated based on the new information
 ---
+# Bayes' Theorem - Explanation with Examples
+
+## What is Bayes' Theorem?
+Bayes' Theorem is a fundamental concept in probability that helps us update our beliefs when we get new information. It is widely used in fields like **machine learning, statistics, decision-making, and Kalman filters**.
+
+Mathematically, Bayes' Theorem is expressed as:
+
+```math
+P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)}
+```
+
+Where:
+- `P(A | B)` → **Posterior Probability** (Probability of event `A` given that event `B` has occurred)
+- `P(B | A)` → **Likelihood** (Probability of event `B` occurring given that event `A` is true)
+- `P(A)` → **Prior Probability** (Initial probability of event `A` occurring before considering new evidence)
+- `P(B)` → **Total Probability of event `B` occurring**
+
+---
+
+## Intuitive Explanation
+Bayes' Theorem helps us answer: 
+👉 **"If we already know something (prior), and get new evidence, how should we update our belief?"**
+
+---
+
+## Why is the Denominator Different in Bayes' Theorem?
+The **denominator** in Bayes’ Theorem represents the **total probability of the evidence** (the event `B`, also called the "normalizing factor"). It ensures that probabilities are correctly adjusted across all cases.
+
+The denominator is calculated as:
+
+```math
+P(B) = P(B | A) P(A) + P(B | \neg A) P(\neg A)
+```
+
+This accounts for **all ways** the evidence `B` (e.g., a positive test result) can occur:
+- If `A` is true: This happens with probability `P(B | A) P(A)`.
+- If `A` is false: This happens with probability `P(B | ¬A) P(¬A)`.
+
+### Example Breakdown
+Consider a medical test:
+- `P(D) = 0.01` (1% of people have the disease)
+- `P(¬D) = 0.99` (99% of people do not)
+- `P(T | D) = 0.9` (90% true positive rate)
+- `P(T | ¬D) = 0.05` (5% false positive rate)
+
+To find `P(D | T)`, we use:
+
+```math
+P(D | T) = \frac{P(T | D) P(D)}{P(T | D) P(D) + P(T | \neg D) P(\neg D)}
+```
+
+Substituting values:
+
+```math
+P(T) = (0.9 \times 0.01) + (0.05 \times 0.99)
+```
+
+Why do we add both terms?
+- The **first term** (`0.9 × 0.01`) accounts for true positives.
+- The **second term** (`0.05 × 0.99`) accounts for false positives.
+
+👉 This ensures we correctly normalize the probability so that all cases where `B` occurs are considered.
+
+---
+
+## Example 1: Medical Diagnosis
+Imagine a disease that affects **1%** of a population, and a test that is **90% accurate** (true positive rate) but also has a **5% false positive rate**.
+
+We define:
+- `P(D) = 0.01` → Prior: **1% of people have the disease**
+- `P(¬D) = 0.99` → **99% of people do not have the disease**
+- `P(T | D) = 0.9` → **90% of sick people test positive** (True Positive)
+- `P(T | ¬D) = 0.05` → **5% of healthy people test positive** (False Positive)
+
+Now, if someone tests positive, what is the probability that they **actually** have the disease?
+
+Using Bayes’ Theorem:
+
+```math
+P(D | T) = \frac{P(T | D) P(D)}{P(T | D) P(D) + P(T | ¬D) P(¬D)}
+```
+
+Substituting values:
+
+```math
+P(D | T) = \frac{(0.9 \times 0.01)}{(0.9 \times 0.01) + (0.05 \times 0.99)}
+```
+
+```math
+P(D | T) = \frac{0.009}{0.009 + 0.0495} = \frac{0.009}{0.0585} \approx 0.154
+```
+
+👉 **Even if the test is 90% accurate, the chance of actually having the disease is only 15.4%!** This happens because the disease is rare, and false positives dominate.
+
+---
+
+## Example 2: Spam Email Filtering
+An email is classified as **spam** based on words it contains. Suppose:
+- **30% of all emails are spam** → `P(S) = 0.3`
+- **Word "lottery" appears in 40% of spam emails** → `P(W | S) = 0.4`
+- **Word "lottery" appears in 5% of non-spam emails** → `P(W | ¬S) = 0.05`
+
+If we see "lottery" in an email, what’s the probability it's spam?
+
+Using Bayes' Theorem:
+
+```math
+P(S | W) = \frac{P(W | S) P(S)}{P(W | S) P(S) + P(W | ¬S) P(¬S)}
+```
+
+Substituting values:
+
+```math
+P(S | W) = \frac{(0.4 \times 0.3)}{(0.4 \times 0.3) + (0.05 \times 0.7)}
+```
+
+```math
+P(S | W) = \frac{0.12}{0.12 + 0.035} = \frac{0.12}{0.155} \approx 0.774
+```
+
+👉 **77.4% probability the email is spam if it contains the word "lottery".** This is how spam filters work!
+
+---
+
+## Key Takeaways
+✅ **Bayes' Theorem helps update probabilities** based on new information.  
+✅ **It is widely used** in **medical diagnosis, spam detection, machine learning, and Kalman filters**.  
+✅ **Prior probability matters** – even a highly accurate test can give misleading results if the event is rare.  
+
+---
